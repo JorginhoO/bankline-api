@@ -19,6 +19,7 @@ public class MovimentacaoService {
 	
 	@Autowired
 	private CorrentistaRepository correntistaRepository;
+	
 	public void save(NovaMovimentacao novaMovimentacao)	{
 		Movimentacao movimentacao = new Movimentacao();
 		
@@ -37,8 +38,9 @@ public class MovimentacaoService {
 		Correntista correntista = correntistaRepository.findById(novaMovimentacao.getIdConta()).orElse(null);
 		if(correntista !=null) {
 			correntista.getConta().setSaldo(correntista.getConta().getSaldo() + valor);
-			correntistaRepository.save(correntista);
+			correntistaRepository.save(correntista); 
 		}
+		
 		repository.save(movimentacao);
 	}
 }
